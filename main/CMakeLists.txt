@@ -1,0 +1,17 @@
+idf_component_register(SRCS
+                        "main.c"
+                        "uart.c"
+                        "sysex.c"
+                        "gt1000.c"
+                        "gt1000_param.c"
+                        "display.c"
+                        "ui_controller.c"
+                        "button_controller.c"
+                        "led.c"
+                       PRIV_REQUIRES
+                        "driver"
+                        "esp_lcd"
+                        "lvgl"
+                        "button"
+                       INCLUDE_DIRS
+                        "")
