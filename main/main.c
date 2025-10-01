@@ -124,5 +124,5 @@ void app_main(void)
 
     show_screen(UI_MAIN);
 
-    update_current_mapping();
+    update_current();
 }
