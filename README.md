@@ -65,13 +65,12 @@ While both methods allow the host to control the device, neither allows the host
 To understand how, I dumped USB packets between Boss Tone Studio and the GT-1000. Boss Tone Studio communicates via SysEx over USB MIDI. (This is why Tone Studio is so slow.) Therefore, by analyzing the USB packets, it is possible to see how Tone Studio implements bidirectional synchronization with the GT-1000 via SysEx.
 
 By capturing and analyzing the USB packets exchanged between the GT-1000 and Boss Tone Studio with [Wireshark](https://www.wireshark.org/download.html), I confirmed that they exchange message sequences that are not documented in the official manuals.
-![packet_capture1](/documents/image2.png)
 
 1. When Boss Tone Studio connects, it first sends a device inquiry (Identity Request) to get the device ID. It then uses a DT1 message to **write a value of `1` to the address `0x7F000001`**. (`F0 41 10 00 00 00 4F 12 7F 00 00 01 01 7F F7` )
-
-![packet_capture2](/documents/image3.png)
+   ![packet_capture1](/documents/image2.png)
 
 2. When Boss Tone Studio disconnects, it **writes a value of `0` to the address `0x7F000001`**. (`F0 41 10 00 00 00 4F 12 7F 00 00 01 00 00 F7` )
+   ![packet_capture2](/documents/image3.png)
 
 (The bytes `04h`–`07h` in the middle of the message are the SysEx CIN bytes of USB MIDI.)
 
